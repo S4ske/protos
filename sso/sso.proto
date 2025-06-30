@@ -4,7 +4,8 @@ package auth;
 
 service Auth {
   rpc Register (RegisterRequest) returns (RegisterResponse);
-  rpc Login (LoginRequest) returns (LoginResponse);
+  rpc Login (LoginRequest) returns (TokenInfo);
+  rpc Refresh (RefreshRequest) returns (TokenInfo);
 }
 
 message RegisterRequest {
@@ -19,9 +20,13 @@ message RegisterResponse {
 message LoginRequest {
   string email = 1;
   string password = 2;
-  int32 app_id = 3;
 }
 
-message LoginResponse {
-  string token = 1;
+message TokenInfo {
+  string access_token = 1;
+  string refresh_token = 2;
+}
+
+message RefreshRequest {
+  string refresh_token = 1;
 }
