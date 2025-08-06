@@ -1,0 +1,12 @@
+version: "3"
+
+tasks:
+  default:
+    cmds:
+      - task: gogenerate
+  gogenerate:
+    aliases:
+      - gogen
+    desc: "Generate Go code from proto files"
+    cmds:
+      - protoc auth/auth.proto --go_out=./gen/go/ --go_opt=paths=source_relative --go-grpc_out=./gen/go/ --go-grpc_opt=paths=source_relative
