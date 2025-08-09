@@ -5,18 +5,16 @@ package auth;
 option go_package = "auth.v1;authv1";
 
 service Auth {
-  rpc Register (RegisterRequest) returns (RegisterResponse);
+  rpc Register (RegisterRequest) returns (EmptyMessage);
   rpc Login (LoginRequest) returns (TokenInfo);
   rpc Refresh (RefreshRequest) returns (TokenInfo);
 }
 
+message EmptyMessage {}
+
 message RegisterRequest {
   string email = 1;
   string password = 2;
-}
-
-message RegisterResponse {
-  int64 user_id = 1;
 }
 
 message LoginRequest {
